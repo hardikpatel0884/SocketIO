@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<p>welcome to Socket IO demo</p>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    let socket=io();
+    socket.on('connect',()=>{
+       console.log('bhai bhai maja padi')
+    });
+
+    socket.on('disconnect',()=>{
+        console.log('kya chalya')
+    })
+</script>
+</body>
+</html>
