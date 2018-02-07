@@ -16,10 +16,27 @@ const {config} = require('./../config/config'),
 app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
     console.log('new user connected')
-})
-io.on('disconect',()=>{
-    console.log('bhaqi gyo')
-})
+
+    socket.emit('newEmail',{
+        from:"hardik@gmail.com",
+        text:"welcome to the chat",
+        createdAt:123
+    });
+    socket.broadcast.emit('newEmail',{
+        from:"hardik@gmail.com",
+        text:"chat joined",
+        createdAt:123
+    });
+
+    socket.on('createEmail',(newEmail)=>{
+        console.log("createEMail: ",newEmail);
+    });
+
+    socket.on('disconect',()=>{
+        console.log('bhaqi gyo');
+    });
+});
+
 server.listen(config.port, () => {
     console.log(`server start on port ${config.port}`);
 });
